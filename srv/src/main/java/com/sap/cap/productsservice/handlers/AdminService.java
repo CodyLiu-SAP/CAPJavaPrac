@@ -20,7 +20,9 @@ public class AdminService implements EventHandler {
 
     @On(event = CqnService.EVENT_CREATE, entity = "AdminService.Products")
     public void onCreate(CdsCreateEventContext context) {
-        context.getCqn().entries().forEach(e -> products.put(e.get("ID"), e));
+        context.getCqn().entries().forEach(
+            entity -> products.put(entity.get("ID"), entity)
+        );
         context.setResult(context.getCqn().entries());
     }
 
